@@ -1,0 +1,7 @@
+= x "pie is tasty"
+= y 2.4 #aftercomment!
+= z y
+#I'm a comment!
+print x
+print y
+print z
