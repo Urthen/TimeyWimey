@@ -45,7 +45,7 @@ In a WHILE block, if the condition is still true at the end of the code block, i
 WHEN and IF blocks always end execution at the end of the code block.
 WHEN blocks will not execute again until the condition transitions to false, then true again. IF statements will execute again on any change to their variables, so long as the conditional is still true.
 
-WHEN statements are waiting when false, executing after set to true, then exhasted after the code block.
+WHEN statements are waiting when false, executing after set to true, then exhasted after the code block if the conditional is still true. If the variable becomes false, the statement is waiting.
 IF and WHILE statements are always waiting unless they are executing.
 
 ### paradox
@@ -56,13 +56,13 @@ To resolve this, a WHEN/WHILE statement will not be re-evaluated for execution s
 For example:
 
 
-    when = x 3
-        x = 5
+    when == x 3
+        = x 5
 
-    when = x 5
-        x = 3
+    when == x 5
+        = x 3
 
-    x = 3
+    = x 3
 
 
 would set X to 3, trigger the first WHEN, which sets x to 5, triggering the second WHEN, which sets x to 3. The first WHEN will not be re-evaluated until execution of the code block has finished, which is after the x = 5 statement was executed and x = 3 statement has propogated back. Therefore, the first WHEN does not realize it was ever false.
